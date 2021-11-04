@@ -2,7 +2,7 @@ import requests
 import sqlite3
 
 
-hdr = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)\
+hdr = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) (комп хуйлы)\
 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
 db = sqlite3.connect('proxy.db')
 cur = db.cursor()
@@ -25,12 +25,12 @@ def check_ip(ip):
 
 if __name__ == '__main__':
 	for values in cur.execute('SELECT ip, port, type FROM main').fetchall():
-		ip, port, proxie_type = values
-		proxie_type = proxie_type.split()[0] # i need only first type
-		proxie = f'{ip}:{port}'
+		ip, port, proxy_type = values
+		proxy_type = proxy_type.split()[0] # i need only first type
+		proxy = f'{ip}:{port}'
 		
-		if check_ip(proxie):
-			print(f'{proxie} работает'.center(35, '*'))
+		if check_ip(proxy):
+			print(f'{proxy} работает'.center(35, '*'))
 		else:
 			del_value_from_db(ip)
-			print(f'{proxie} говно')
+			print(f'{proxie} говно переделывай')
